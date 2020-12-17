@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +7,31 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  data = [
+
+	serverData: JSON;
+
+	versus="test_profile"
+
+
+
+	constructor(private httpClient: HttpClient) {
+	}
+  
+	testfunc() {
+		console.log("test")
+		return("Help")
+	}
+
+	sayHi() {
+	  this.httpClient.get('http://192.168.0.67:5000/unit_json?id=5fd5cb82634601dbe2d3b939').subscribe(data => { 
+                console.log("HI");
+		this.serverData = data as JSON;
+                
+	  })
+	  	return(this.serverData)
+	}
+
+	data = [
 		{
 				"group": "Dataset 1",
 				"date": "2018-12-31T21:00:00.000Z",
@@ -56,7 +81,32 @@ export class AppComponent {
 				"group": "Dataset 2",
 				"date": "2019-01-18T21:00:00.000Z",
 				"value": -63954
-		}
+		},
+		{
+			"group": "Dataset 3",
+			"date": "2018-12-31T21:00:00.000Z",
+			"value": 20032
+	},
+	{
+			"group": "Dataset 3",
+			"date": "2019-01-05T21:00:00.000Z",
+			"value": -47312
+	},
+	{
+			"group": "Dataset 3",
+			"date": "2019-01-07T21:00:00.000Z",
+			"value": -32392
+	},
+	{
+			"group": "Dataset 3",
+			"date": "2019-01-14T21:00:00.000Z",
+			"value": -42576
+	},
+	{
+			"group": "Dataset 3",
+			"date": "2019-01-18T21:00:00.000Z",
+			"value": 10135
+	}
 ];
 	options = {
 		"title": "Area (time series - natural curve)",
