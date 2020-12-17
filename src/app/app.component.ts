@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -17,14 +17,16 @@ export class AppComponent {
 	constructor(private httpClient: HttpClient) {
 	}
   
-	testfunc() {
-		console.log("test")
-		return("Help")
-	}
-
-	sayHi() {
+	
+	
+	
+	  sayHi() {
+		let headers = new HttpHeaders({
+			"Access-Control-Allow-Origin":  '*'
+		 })
+		console.log("requesting");
 	  this.httpClient.get('http://192.168.0.67:5000/unit_json?id=5fd5cb82634601dbe2d3b939').subscribe(data => { 
-                console.log("HI");
+                console.log(data);
 		this.serverData = data as JSON;
                 
 	  })
