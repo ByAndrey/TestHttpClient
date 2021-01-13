@@ -1,4 +1,11 @@
-<ibm-line-chart [data]="data" [options]="options"></ibm-line-chart>
-{{ versus }}<hr>
-<button (click)=sayHi()>Get</button>
-{{ serverData }}
+<ibm-line-chart [data]="avg_dataset" [options]="options"></ibm-line-chart>
+<br>
+<div>
+    <ibm-slider
+    [min]="1"
+    [max]="25"
+    [step]="1"
+    [value]="10"
+    (valueChange)="onInputChange($event)">
+</ibm-slider>
+</div>
